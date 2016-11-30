@@ -1,0 +1,20 @@
+---
+
+public_ip: 10.11.0.10
+
+iptables:
+  allow:
+    - port: 22
+      proto: tcp
+    - port: 3306
+      proto: tcp
+      source: "{{ container_bridge_subnet }}.0/24"
+    - port: 4949
+      proto: tcp
+      source: "{{ munin_master }}/32"
+
+userns_offset: 100000
+hostname: "service-mysql"
+backup_user: "mysql-backup"
+backup_dir: "/var/backups/databases/"
+backup_log: "/var/log/mysql-backups/backup.log"

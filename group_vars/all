@@ -1,0 +1,22 @@
+---
+
+config_user_name: "ansible"
+config_user_password: ""
+config_user_password_encrypted: ""
+config_user_public_key: ""
+
+apticron_recipient: ""
+certbot_auth_email: ""
+
+timezone: "Etc/UTC"
+container_bridge_subnet: "10.11.0"
+ansible_connection: "ssh"
+apt_server: "ftp.de.debian.org"
+
+ssmtp_email: ""
+ssmtp_server: ""
+ssmtp_user: ""
+ssmtp_pass: ""
+ssmtp_port: ""
+
+munin_master: "10.11.0.30"

@@ -1,0 +1,22 @@
+# === master ===
+
+[master]
+ansiserve
+
+# === containers definition ===
+
+[service-mysql]
+10.11.0.10
+
+[www-icinga]
+10.11.0.20
+
+[www-munin]
+10.11.0.30
+
+# === containers in scope ===
+
+[container:children]
+service-mysql
+www-icinga
+www-munin

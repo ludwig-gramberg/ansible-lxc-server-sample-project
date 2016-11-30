@@ -1,0 +1,11 @@
+---
+
+databases:
+  mysql:
+    - name: icinga
+      encoding: utf8
+      collation: utf8_unicode_ci
+      users:
+        - name: icinga
+          password: icinga
+          host: 10.11.0.20

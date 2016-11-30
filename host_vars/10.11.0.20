@@ -1,0 +1,25 @@
+---
+
+public_ip: 10.11.0.20
+
+iptables:
+  allow:
+    - port: 22
+      proto: tcp
+    - port: 80
+      proto: tcp
+      source: "{{ container_bridge_subnet }}.1/32"
+    - port: 4949
+      proto: tcp
+      source: "{{ munin_master }}/32"
+
+userns_offset: 200000
+hostname: "www-icinga"
+php_max_upload_size: "8M"
+domain_name: "icinga.dev.localhost"
+icinga_mysql_user: "icinga"
+icinga_mysql_pass: "icinga"
+icinga_mysql_name: "icinga"
+icinga_mysql_host: "10.11.0.10"
+icinga_admin_username: "admin"
+icinga_admin_password_encrypted: ""

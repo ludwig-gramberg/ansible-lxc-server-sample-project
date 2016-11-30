@@ -1,0 +1,68 @@
+- hosts: container
+  vars:
+    ansible_user: "{{ config_user_name }}"
+    ansible_become_pass: "{{ config_user_password }}"
+  become: true
+  become_user: root
+  become_method: sudo
+  tasks:
+    - debug: msg="gather facts"
+      tags: munin
+  roles:
+    - role: container
+      tags: container
+    - role: users
+      tags: users
+    - role: apticron
+      tags: apticron
+    - role: iptables
+      tags: iptables
+    - role: ssmtp
+      tags: ssmtp
+    - role: timezone
+      tags: timezone
+
+- hosts: service-mysql
+  vars:
+    ansible_user: "{{ config_user_name }}"
+    ansible_become_pass: "{{ config_user_password }}"
+  become: true
+  become_user: root
+  become_method: sudo
+  roles:
+   - role: munin-node
+     tags: munin
+   - role: mysql
+     tags: mysql
+
+- hosts: www-icinga
+  vars:
+    ansible_user: "{{ config_user_name }}"
+    ansible_become_pass: "{{ config_user_password }}"
+  become: true
+  become_user: root
+  become_method: sudo
+  roles:
+   - role: munin-node
+     tags: munin
+   - role: webserver
+     tags: webserver
+   - role: php7
+     tags: php
+   - role: icinga
+     tags: icinga
+
+- hosts: www-munin
+  vars:
+    ansible_user: "{{ config_user_name }}"
+    ansible_become_pass: "{{ config_user_password }}"
+  become: true
+  become_user: root
+  become_method: sudo
+  roles:
+   - role: munin-node
+     tags: munin
+   - role: webserver
+     tags: webserver
+   - role: munin
+     tags: munin

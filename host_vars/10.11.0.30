@@ -1,0 +1,22 @@
+---
+
+public_ip: 10.11.0.30
+
+iptables:
+  allow:
+  - port: 22
+    proto: tcp
+  - port: 80
+    proto: tcp
+    source: "{{ container_bridge_subnet }}.1/32"
+  - port: 4949
+    proto: tcp
+    source: "{{ munin_master }}/32"
+
+userns_offset: 300000
+hostname: "www-munin"
+domain_name: "munin.dev.localhost"
+munin_user: "munin"
+munin_pass: "munin"
+munin_vhost_domain: "munin.dev.localhost"
+munin_vhost_admin: ""

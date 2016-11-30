@@ -1,0 +1,7 @@
+---
+
+admins:
+  - name: ""
+    password_encrypted: ""
+    ssh_keys:
+     - key: ""

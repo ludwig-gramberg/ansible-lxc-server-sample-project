@@ -1,0 +1,37 @@
+---
+
+mpm:
+  module: worker
+  start_servers: 1
+  min_spare_threads: 1
+  max_spare_threads: 5
+  thread_limit: 64
+  threads_per_child: 25
+  max_request_workers: 150
+  max_connections_per_child: 0
+
+public_ip: 192.168.200.12
+public_eth: eth0
+
+iptables:
+  allow:
+    - port: 22
+      proto: tcp
+    - port: 80
+      proto: tcp
+    - port: 443
+      proto: tcp
+    - port: 4949
+      proto: tcp
+      source: "{{ munin_master }}/32"
+      target: "{{ container_bridge_subnet }}.1/32"
+  forward:
+    - container_ip: 10.11.0.30
+      source_port: 30000
+      target_port: 22
+
+setup_ansible_user: "root"
+setup_ansible_ssh_pass: "root"
+
+container_bridge_uuid: "a147a941-2b48-e94c-2fea-a0ccbe9454bb"
+container_bridge_mac: "52:54:00:6A:F0:80"
